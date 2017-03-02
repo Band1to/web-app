@@ -9,6 +9,10 @@
     function WalletCtrl($timeout, MAX_WALLETS, Wallet, Toast, hidapi) {
         var vm = this;
 
+
+
+
+
         vm.readWallets = function() {
             vm.readingWallets = true;
             return Wallet.list()

@@ -144,19 +144,16 @@
             if (input.confirmations < 1) {
                 return;
             }
-//             var amount = parseInt(input.value, 10);
-			console.debug("adding inputs");
             var amount = parseInt(input.value, 10);
             if (isNaN(amount)) {
                 throw ERR_INVALID_AMOUNT;
             }
-//             var hash = Bitcoin.Util.bytesToBase64(Bitcoin.Util.hexToBytes(input.txid));
-            var hash = Bitcoin.Util.bytesToBase64(Bitcoin.Util.hexToBytes(hexUtil.makeStringSmallEndian(input.txid)));
+            var hash = Bitcoin.Util.bytesToBase64(Bitcoin.Util.hexToBytes(input.tx_hash));
             var script = Bitcoin.Util.hexToBytes(input.script);
             var bcIn = new Bitcoin.TransactionIn({
                 outpoint: {
                     hash: hash,
-                    index: input.vout
+                    index: input.tx_output_n
                 },
                 script: script,
                 sequence: 4294967295

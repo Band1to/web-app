@@ -7,9 +7,6 @@
     HexFactory.$inject = [];
 
     function HexFactory() {
-//      var baseUrl = 'https://bitlox.io/api';
-// 		var baseUrlroot = 'https://bitlox.io';
-		
         return {
             // string to hex methods
             utf8ToHex: utf8ToHex,
@@ -28,8 +25,6 @@
             // make a big endian string small endian
             makeStringSmallEndian: makeStringSmallEndian
         };
-
-		
 
         function strToPaddedHex(str, targetBytes, padByte) {
             return padBytes(utf8ToHex(str), targetBytes, padByte);
@@ -76,7 +71,8 @@
         }
 
         function intToBigEndianValue(n, minBytes) {
-            n = BigInteger.valueOf(n);
+//             n = BigInteger.valueOf(n); // this returns a wrong value when an input is more than 42.9 BTC
+            n = new BigInteger(n.toString());
             var value = n.toByteArrayUnsigned().reverse();
             while (value.length < minBytes) {
                 value.push(0);
